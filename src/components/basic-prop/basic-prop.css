@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.container{
+  width: 300pt;
+  height: 50pt;
+  border: 2px solid black;
+  border-radius: 10pt;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

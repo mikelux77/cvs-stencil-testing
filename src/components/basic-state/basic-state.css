@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.canceled{
+  width: 60pt;
+  background-color: red;
+}
+
+.submitted {
+  width: 70pt;
+  background-color: green;
+}
