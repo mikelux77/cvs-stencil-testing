@@ -4,7 +4,7 @@ import { ApiData } from './apiData';
 @Component({
   tag: 'basic-api-mock',
   styleUrl: 'basic-api-mock.css',
-  shadow: true,
+  shadow: false,
 })
 export class BasicApiMock {
 

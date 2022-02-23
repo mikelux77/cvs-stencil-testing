@@ -9,8 +9,7 @@ describe('basic-api-mock', () => {
   beforeEach(async () => {
     page = await newSpecPage({
       components: [BasicApiMock],
-      html: `<basic-api-mock>
-      </basic-api-mock>`,
+      html: `<basic-api-mock></basic-api-mock>`,
     });
     await page.waitForChanges();
   });
@@ -18,40 +17,77 @@ describe('basic-api-mock', () => {
   it('renders', async () => {
     expect(page.root).toEqualHtml(`
     <basic-api-mock>
-      <mock:shadow-root>
-        <div class=\"container\">
-          <div class=\"alert-container\"></div>
-          <div class=\"main-container\"></div>
-          <button>
-            Fetch Data
-          </button>
-        </div>
-      </mock:shadow-root>
+      <div class=\"container\">
+        <div class=\"alert-container\"></div>
+        <div class=\"main-container\"></div>
+        <button>
+          Fetch Data
+        </button>
+      </div>
     </basic-api-mock>
     `);
   });
 
-  it("API successfully returns data with status code 0000", async () => {
-    // ApiData.fetchData = () => {
-    //   return {
-    //     statusCode: "0000",
-    //     body: {
-    //         data: [
-    //             "Apple",
-    //             "Banana",
-    //             "Cherry",
-    //             "Grape",
-    //             "Watermelon",
-    //         ]
-    //     }
-    // }
-    // }
-    // page.rootInstance.fetchData();
-    // await page.waitForChanges();
-    const container = page.root.querySelector("div")
-    console.log(container)
-    // const mainContainer = container.querySelector(".main-container")
-    // const lists = mainContainer.querySelectorAll("p")
-    // expect(page.rootInstance.isSuccess).toBe(true);
+  it("API success set states properly and renders proper elements", async () => {
+    ApiData.fetchData = () => {
+      return {
+        statusCode: "0000",
+        body: {
+            data: [
+                "Apple",
+                "Banana",
+                "Cherry",
+                "Grape",
+                "Watermelon",
+            ]
+        }
+    }
+    }
+    page.rootInstance.fetchData();
+    await page.waitForChanges();
+    const container = page.root.querySelector(".container");
+    const mainContainer = container.querySelector(".main-container")
+    const lists = mainContainer.querySelectorAll("p")
+
+    const alertContainer = container.querySelector(".alert-container")
+    const alertBanner = alertContainer.querySelector("p");
+
+    expect(container).toBeTruthy();
+    expect(mainContainer).toBeTruthy();
+    expect(alertContainer).toBeTruthy();
+    expect(alertBanner).toBeTruthy()
+    
+    expect(lists.length).toBe(5);
+    expect(alertBanner.textContent).toBe("Fetch Successfully")
+
+    expect(page.rootInstance.isSuccess).toBe(true);
+    expect(page.rootInstance.isFailed).toBe(false);
  })
+
+ it("API failure set states properly and renders proper elements", async () => {
+  ApiData.fetchData = () => {
+    return {
+      statusCode: "9999"
+  }
+  }
+  page.rootInstance.fetchData();
+  await page.waitForChanges();
+  const container = page.root.querySelector(".container");
+  const mainContainer = container.querySelector(".main-container")
+  const lists = mainContainer.querySelectorAll("p")
+
+  const alertContainer = container.querySelector(".alert-container")
+  const alertBanner = alertContainer.querySelector("p");
+
+  expect(container).toBeTruthy();
+  expect(mainContainer).toBeTruthy();
+  expect(alertContainer).toBeTruthy();
+  expect(alertBanner).toBeTruthy()
+  
+  expect(lists.length).toBe(0);
+  expect(alertBanner.textContent).toBe("Fetch Failed")
+
+  expect(page.rootInstance.isSuccess).toBe(false);
+  expect(page.rootInstance.isFailed).toBe(true);
+})
 });

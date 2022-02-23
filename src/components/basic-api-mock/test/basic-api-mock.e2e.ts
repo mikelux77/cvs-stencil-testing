@@ -17,13 +17,13 @@ describe('basic-api-mock', () => {
   });
 
   it("renders lists and alert banner when button is clicked", async () => {
-    const button = await page.find("basic-api-mock >>> button");
+    const button = await page.find("button");
     button.click();
     await page.waitForChanges();
 
-    const mainContainer = await page.find("basic-api-mock >>> .main-container");
+    const mainContainer = await page.find(".main-container");
     const lists = await mainContainer.findAll("p");
-    const alertContainer = await page.find("basic-api-mock >>> .alert-container");
+    const alertContainer = await page.find(".alert-container");
     const alertBanner = alertContainer.find("p");
     expect(lists).not.toBeNull();
     expect(lists.length).toBe(5);
