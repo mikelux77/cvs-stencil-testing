@@ -22,7 +22,7 @@ describe("basic-rendering", () => {
   it("renders container div", async () => {
     const containerElement = await page.find("basic-rendering >>> div");
     // const containerElement = await page.find("basic-rendering >>> .container");
-    // you can find element using class or id too
+    // you can find element using class or id too #id, .class component
     expect(containerElement).toBeTruthy();
     expect(containerElement).toHaveClass("container")
   })
@@ -30,9 +30,9 @@ describe("basic-rendering", () => {
   it("renders box div", async () => {
     const divElement = await page.find("basic-rendering >>> .container");
     const label = await divElement.find("label")
-    const input = await divElement.find("input")
+    const h5 = await divElement.find("h5")
     expect(label).toBeTruthy();
-    expect(input).toBeTruthy();
+    expect(h5).toBeTruthy();
   })
 
   it("renders component-sample component", async () => {

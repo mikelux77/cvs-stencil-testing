@@ -6,6 +6,12 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface BasicApiMock {
+    }
+    interface BasicEvent {
+    }
+    interface BasicFunction {
+    }
     interface BasicProp {
         "creditCard": string;
         "paymentFlow": string;
@@ -18,6 +24,24 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLBasicApiMockElement extends Components.BasicApiMock, HTMLStencilElement {
+    }
+    var HTMLBasicApiMockElement: {
+        prototype: HTMLBasicApiMockElement;
+        new (): HTMLBasicApiMockElement;
+    };
+    interface HTMLBasicEventElement extends Components.BasicEvent, HTMLStencilElement {
+    }
+    var HTMLBasicEventElement: {
+        prototype: HTMLBasicEventElement;
+        new (): HTMLBasicEventElement;
+    };
+    interface HTMLBasicFunctionElement extends Components.BasicFunction, HTMLStencilElement {
+    }
+    var HTMLBasicFunctionElement: {
+        prototype: HTMLBasicFunctionElement;
+        new (): HTMLBasicFunctionElement;
+    };
     interface HTMLBasicPropElement extends Components.BasicProp, HTMLStencilElement {
     }
     var HTMLBasicPropElement: {
@@ -43,6 +67,9 @@ declare global {
         new (): HTMLComponentSampleElement;
     };
     interface HTMLElementTagNameMap {
+        "basic-api-mock": HTMLBasicApiMockElement;
+        "basic-event": HTMLBasicEventElement;
+        "basic-function": HTMLBasicFunctionElement;
         "basic-prop": HTMLBasicPropElement;
         "basic-rendering": HTMLBasicRenderingElement;
         "basic-state": HTMLBasicStateElement;
@@ -50,6 +77,15 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface BasicApiMock {
+    }
+    interface BasicEvent {
+        "onClickEvent"?: (event: CustomEvent<any>) => void;
+        "onClickEventWithDetail"?: (event: CustomEvent<any>) => void;
+        "onClickMultipleTimes"?: (event: CustomEvent<any>) => void;
+    }
+    interface BasicFunction {
+    }
     interface BasicProp {
         "creditCard": string;
         "paymentFlow": string;
@@ -61,6 +97,9 @@ declare namespace LocalJSX {
     interface ComponentSample {
     }
     interface IntrinsicElements {
+        "basic-api-mock": BasicApiMock;
+        "basic-event": BasicEvent;
+        "basic-function": BasicFunction;
         "basic-prop": BasicProp;
         "basic-rendering": BasicRendering;
         "basic-state": BasicState;
@@ -71,6 +110,9 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "basic-api-mock": LocalJSX.BasicApiMock & JSXBase.HTMLAttributes<HTMLBasicApiMockElement>;
+            "basic-event": LocalJSX.BasicEvent & JSXBase.HTMLAttributes<HTMLBasicEventElement>;
+            "basic-function": LocalJSX.BasicFunction & JSXBase.HTMLAttributes<HTMLBasicFunctionElement>;
             "basic-prop": LocalJSX.BasicProp & JSXBase.HTMLAttributes<HTMLBasicPropElement>;
             "basic-rendering": LocalJSX.BasicRendering & JSXBase.HTMLAttributes<HTMLBasicRenderingElement>;
             "basic-state": LocalJSX.BasicState & JSXBase.HTMLAttributes<HTMLBasicStateElement>;

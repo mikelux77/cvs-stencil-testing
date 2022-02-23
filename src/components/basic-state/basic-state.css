@@ -2,6 +2,10 @@
   display: block;
 }
 
+.container {
+  display:block;
+}
+
 .canceled{
   width: 60pt;
   background-color: red;
@@ -10,4 +14,16 @@
 .submitted {
   width: 70pt;
   background-color: green;
+}
+
+.submit-button{
+  background-color: green;
+  border: 2px solid darkgreen;
+  color: white;
+}
+
+.cancel-button{
+  background-color: red;
+  border: 2px solid darkred;
+  color: white;
 }

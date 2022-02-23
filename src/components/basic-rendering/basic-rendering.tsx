@@ -12,8 +12,8 @@ export class BasicRendering {
       <Host>
         <h1 class="title"> basic rendering</h1>
         <div class="container">
-          <label>basic input</label>
-          <input></input>
+          <h5>Basic H5 element</h5>
+          <label>Basic label element</label>
           <component-sample></component-sample>
         </div>
       </Host>

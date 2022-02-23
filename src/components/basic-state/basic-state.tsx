@@ -21,23 +21,33 @@ export class BasicState {
   }
 
   private readonly handleSubmit = ():void => {
-    this.isSubmitted = !this.isSubmitted;
+    this.isSubmitted = true;
     return;
+  }
+
+  private readonly handleCancel = ():void => {
+    this.isSubmitted = false;
+    this.creditCard = '';
   }
 
   render() {
     return (
       <Host>
-        <div>
-          {this.isSubmitted ? 
-          <h3 class="canceled">Canceled</h3>
-          :<h3 class="submitted">Submitted</h3>}
+        <div class="container">
 
           <input 
           value={this.creditCard}
           onKeyDown={this.handleInput}
           />
-          <button onClick={this.handleSubmit}>{this.isSubmitted ? "Canceled" : "Submit"}</button>
+
+          <div class="button-container">
+          <button class="submit-button" onClick={this.handleSubmit}>Submit</button>
+          <button class="cancel-button" onClick={this.handleCancel}>Cancel</button>
+          </div>
+
+          <div>
+            <h3>{this.isSubmitted ? `Input submitted : ${this.creditCard}` : ""}</h3>
+          </div>
         </div>
       </Host>
     );
