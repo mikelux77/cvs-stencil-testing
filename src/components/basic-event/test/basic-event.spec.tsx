@@ -15,6 +15,7 @@ describe('basic-event', () => {
   });
 
   it('renders', async () => {
+    //Basic Html structure testing
     expect(page.root).toEqualHtml(`
     <basic-event>
       <mock:shadow-root>
@@ -33,9 +34,9 @@ describe('basic-event', () => {
 
   it("fires clickEvent event on clickHandler", async () => {
     const spyClickEvent = jest.fn();
-    page.doc.addEventListener("clickEvent", spyClickEvent);
+    page.doc.addEventListener("clickEvent", spyClickEvent); //we can use jest fn() to spy on the event by passing it in addEventListner
 
-    page.rootInstance.clickHandler();
+    page.rootInstance.clickHandler(); //We can access to component's methods or states using rootInstance
     await page.waitForChanges();
 
     expect(spyClickEvent).toHaveBeenCalled();

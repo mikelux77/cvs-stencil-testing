@@ -15,6 +15,7 @@ describe('basic-api-mock', () => {
   });
 
   it('renders', async () => {
+    //Basic Html structure testing
     expect(page.root).toEqualHtml(`
     <basic-api-mock>
       <div class=\"container\">
@@ -29,7 +30,7 @@ describe('basic-api-mock', () => {
   });
 
   it("API success set states properly and renders proper elements", async () => {
-    ApiData.fetchData = () => {
+    ApiData.fetchData = () => { // We need to overwrite the fetchData function to mock the API
       return {
         statusCode: "0000",
         body: {
@@ -43,7 +44,7 @@ describe('basic-api-mock', () => {
         }
     }
     }
-    page.rootInstance.fetchData();
+    page.rootInstance.fetchData();//We can access to component's methods or states using rootInstance
     await page.waitForChanges();
     const container = page.root.querySelector(".container");
     const mainContainer = container.querySelector(".main-container")

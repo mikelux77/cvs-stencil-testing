@@ -7,6 +7,7 @@ describe('basic-rendering', () => {
       components: [BasicRendering],
       html: `<basic-rendering></basic-rendering>`,
     });
+    //Basic Html structure testing
     expect(page.root).toEqualHtml(`
     <basic-rendering>
       <mock:shadow-root>

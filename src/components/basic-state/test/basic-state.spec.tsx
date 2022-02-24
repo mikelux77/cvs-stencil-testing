@@ -15,6 +15,7 @@ describe('basic-state', () => {
   });
 
   it('renders', async () => {
+    //Basic Html structure testing
     expect(page.root).toEqualHtml(`
     <basic-state>
       <mock:shadow-root>
@@ -38,7 +39,7 @@ describe('basic-state', () => {
   });
 
   it("handleSubmit changes isSubmitted state", async () => {
-    const previousIsSubmitted = page.rootInstance.isSubmitted;
+    const previousIsSubmitted = page.rootInstance.isSubmitted; //We can access to component's methods or states using rootInstance
     expect(previousIsSubmitted).toBe(false);
 
     page.rootInstance.handleSubmit();
@@ -47,6 +48,31 @@ describe('basic-state', () => {
 
     const afterIsSubmitted = page.rootInstance.isSubmitted;
     expect(afterIsSubmitted).toBe(true);
+
+
+    //You can test the Html structure after state or prop changes too in spec testing.
+    expect(page.root).toEqualHtml(`
+    <basic-state>
+      <mock:shadow-root>
+        <div class=\"container\">
+          <input value=\"\">
+          <div class=\"button-container\">
+            <button class=\"submit-button\">
+              Submit
+            </button>
+            <button class=\"cancel-button\">
+              Cancel
+            </button>
+          </div>
+          <div>
+            <h3>
+              Input submitted :
+            </h3>
+          </div>
+        </div>
+      </mock:shadow-root>
+    </basic-state>
+    `)
   })
 
   it("handleCancel changes isSubmitted and creditCard state", async ()=> {
@@ -63,5 +89,6 @@ describe('basic-state', () => {
     const afterCancelisSubmitted = page.rootInstance.isSubmitted;
     expect(afterCancelCreditCard).toBe("");
     expect(afterCancelisSubmitted).toBe(false);
+
   })
 });

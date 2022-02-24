@@ -15,6 +15,7 @@ describe('basic-function', () => {
     await page.waitForChanges();
   });
   it('renders', async () => {
+    //Basic Html structure testing
     expect(page.root).toEqualHtml(`
     <basic-function>
       <mock:shadow-root>
@@ -31,7 +32,7 @@ describe('basic-function', () => {
 
   it("calculate functions works properly", async ()=> {
     const expected = 25;
-    const actual = page.rootInstance.calculate();
+    const actual = page.rootInstance.calculate(); //We can access to component's methods or states using rootInstance
 
     expect(expected).toBe(actual)
   })

@@ -7,6 +7,8 @@ describe('component-sample', () => {
       components: [ComponentSample],
       html: `<component-sample></component-sample>`,
     });
+    
+    //Basic Html structure testing
     expect(page.root).toEqualHtml(`
     <component-sample>
       <mock:shadow-root>
